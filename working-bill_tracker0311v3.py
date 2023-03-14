@@ -6,6 +6,7 @@ import string
 import requests
 import urllib.request
 import json
+import urllib.request
 from tkinter import filedialog, messagebox, simpledialog, Menu
 
 
@@ -217,11 +218,13 @@ def retrieve_state_bills(state):
 
 
 API_KEY = "ddac7961c52b60e13aeba110f6532bc3"
-state = "ny"
-url = f"https://api.legiscan.com/?key={ddac7961c52b60e13aeba110f6532bc3}&op=getMasterList&state={state}"
+state = "wa"
+url = f"https://api.legiscan.com/?key=ddac7961c52b60e13aeba110f6532bc3&op=getMasterList&state=wa"
 response: object = urllib.request.urlopen(url)
+x = urllib.request.urlopen(url)
 data = json.loads(response.read().decode())
 print(data)
+print(x.read())
 
 if __name__ == '__main__':
     # Parse command-line arguments
