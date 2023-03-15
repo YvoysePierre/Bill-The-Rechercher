@@ -1,3 +1,4 @@
+
 import json
 import csv
 
@@ -16,3 +17,5 @@ with open('output.csv', 'w', newline='') as csv_file:
     for item in data:
         row = [str(value) for value in item.values()]
         writer.writerow(row)
+
+#%%

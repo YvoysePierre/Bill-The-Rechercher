@@ -8,9 +8,9 @@ import csv
 
 
 def main():
-    state = input("Enter a state to retrieve bills: ")
-    bills = retrieve_state_bills(state)
-    print(f"Bills for {state}:")
+    state = input("WA: ")
+    bills = retrieve_state_bills(WA)
+    print(f"Bills for WA:")
     for bill in bills:
         print(bill)
 
@@ -22,13 +22,13 @@ def main():
         except tk.TclError:
             break
 
-def retrieve_state_bills(state):
-    url = f'https://api.legiscan.com/?key=ddac7961c52b60e13aeba110f6532bc3&op=getBill&id=1735313={ddac7961c52b60e13aeba110f6532bc3}&op=getMasterList&state={State}'
+def retrieve_state_bills(WA):
+    url = f'https://api.legiscan.com/?key=ddac7961c52b60e13aeba110f6532bc3&op=getBill&id=1735313=ddac7961c52b60e13aeba110f6532bc3&op=getMasterList&state=WA'
     response = urllib.request.urlopen(url)
     data = json.loads(response.read().decode())
     bills = []
-    for bill in data["masterlist"]:
-        bill_details_url = f'https://api.legiscan.com/?key=ddac7961c52b60e13aeba110f6532bc3&op=getBillText&id=2739274={ddac7961c52b60e13aeba110f6532bc3}&op=getBill&id={bill[bill_id]}'
+    for bill in data[""]:
+        bill_details_url = f'https://api.legiscan.com/?key=ddac7961c52b60e13aeba110f6532bc3&op=getBillText&id=2739274=ddac7961c52b60e13aeba110f6532bc3&op=getBill&id=bill[bill_id'
         bill_details_response: object = urllib.request.urlopen(bill_details_url)
         bill_details_data = json.loads(bill_details_response.read().decode())
         bill_dict = {{
@@ -49,14 +49,12 @@ data = json.loads(response.read().decode())
 print(data)
 
 # Open a new CSV file for writing
-with open('output.csv', 'w', newline='') as csv_file:
+with open('data', 'w', newline='') as csv_file:
     writer = csv.writer(csv_file)
+    print(response)
 
-# Write the header row based on the keys in the first item
-header = list(data[0].keys())
-writer.writerow(header)
-
-for item in data:
-    row = [str(item.get(key, '')) for key in header]
-    writer.writerow(row)
+    # Write each row to the CSV file
+    for item in data:
+        writer.writerow(urllib.request.urlopen(url))
+        writer = csv.writer(csv_file)
 #%%
